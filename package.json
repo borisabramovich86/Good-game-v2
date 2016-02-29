@@ -11,6 +11,7 @@
     "request": "latest"
   },
   "devDependencies": {
-    "bluebird": "^3.3.3"
+    "async": "^1.5.2",
+    "q": "^1.4.1"
   }
 }
