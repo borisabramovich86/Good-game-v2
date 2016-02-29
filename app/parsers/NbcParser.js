@@ -42,8 +42,8 @@ function NbcParser(parser) {
         return overtimeText === "Final-OT";
     };
 
-    this.parse = function(input,callback) {
-        this.parser.parse(input, callback);
+    this.parse = function() {
+        return this.parser.parse();
     };
 
     parser.ResultElement = ".shsScoreboardCol";

@@ -13,22 +13,15 @@ module.exports = function(app) {
 		// use mongoose to get all nerds in the database
 		console.log('Getting scores...');
 		var parser = new Parser();
-		var nbcParser = new NbcParser (parser);
-		var promise = new Promise(function (resolve, reject) {
-			nbcParser.parse(null, function(err, result){
-				if(err){
-					reject(err);
-				} else {
-					resolve(result);
-				}
-			});
-		});
-
-		promise.then(function(successResponse) {
-			res.json(successResponse)
-			res.end();;
-		}, function(errorResponse) {
-			console.log(errorResponse + ' No it failed');
+		var nbcParser = new NbcParser(parser);
+		nbcParser.parse()
+		.then(function (result) {
+			res.json(result);
+			res.end();
+		})
+		.fail(function (error) {
+			// error returns error message if either first or last name are null or undefined
+			console.log('An error occurred: ' + error);
 		});
 	});
 
