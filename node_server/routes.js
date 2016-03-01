@@ -1,6 +1,5 @@
-var Parser = require('../app/parsers/parser');
-var NbcParser = require('../app/parsers/NbcParser');
-var Promise = require('bluebird');
+var Parser = require('../node_server/parsers/parser');
+var NbcParser = require('../node_server/parsers/NbcParser');
 
 module.exports = function(app) {
 
@@ -28,7 +27,7 @@ module.exports = function(app) {
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html');
+		res.sendfile('./build/index.htm');
 	});
 
 };

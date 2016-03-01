@@ -70,12 +70,10 @@ function parseUrl(url,that){
 
                     that.calculateGameStatus(resultData);
                     collection.push(resultData);
-                    console.log(resultData.AwayTeam.name + "-" + resultData.HomeTeam.name);
                 });
             });
 
-            //areResultsSame(todaysGames,yesterdaysGames);
-            console.log('finished ' + url);
+            console.log('Finished parsing' + url);
             deferred.resolve(collection);
         }
         else{
@@ -130,31 +128,41 @@ Parser.prototype.parse = function() {
                 deferred.reject(err);
             }
             else{
-                console.log('Finished getting all games.');
-                deferred.resolve(
-                    {
-                        "today":results[0],
-                        "yesterday" : results[1]
-                    });
+                console.log('Finished getting all the games.');
+                var result = {
+                    "yesterday" : results[1],
+                    "today" : results[0]
+                };
+                //areResultsSame(results[0],results[1],result);
+                deferred.resolve(result);
             }
         });
 
     return deferred.promise;
 };
 
-function areResultsSame(todaysGames,yesterdaysGames) {
-    console.log('all done');
+function areResultsSame(todaysGames,yesterdaysGames,result) {
     var tmp1 = todaysGames;
     var tmp2 = yesterdaysGames;
 
-    resultList.remove(SiteUrl);
-    resultList.remove(YesterdaysGamesUrl);
-
-    resultList.put("yesterday",tmp2);
-
     if(!IsYesterdayAndTodaySame(tmp1,tmp2)){
-        resultList.put("today", tmp1);
+        result["today"] =  tmp1;
     }
+}
+
+function IsYesterdayAndTodaySame(todayResults, yesterdayResults){
+
+    if(todayResults.length != yesterdayResults.length)
+        return false;
+
+    var areSame = true;
+    for (var i = 0; i < todayResults.length; i++) {
+
+        if(!todayResults.get(i).equals(yesterdayResults.get(i)))
+            areSame = false;
+    }
+
+    return areSame;
 }
 
 module.exports = Parser;
