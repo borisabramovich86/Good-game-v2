@@ -1,0 +1,19 @@
+<div id="gg-scores-container" ng-controller="scoreController as scoreCtrl" class="container">
+    <div class="row">
+        <div class="col-xs-6 gg-score-day text-left text-capitalize text-uppercase">Today</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1" ng-repeat="score in todayScores">
+            <gg-score score="score"></gg-score>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-6 gg-score-day text-left text-capitalize text-uppercase">Yesterday</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1" ng-repeat="score in yesterdayScores">
+            <gg-score score="score" ></gg-score>
+        </div>
+    </div>
+</div>

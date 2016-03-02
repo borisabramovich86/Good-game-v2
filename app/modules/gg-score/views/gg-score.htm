@@ -1,3 +1,9 @@
-<div>
-    {{homeTeam}}-{{awayTeam}} good: {{goodGame}} score:{{result}}
+<div class="row gg-score-row">
+    <div class="col-xs-12 text-center">
+        <button class="btn btn-default orange-circle-button" ng-class="{good: (goodGame && result !== 'unfinished'), bad:!goodGame, pending:result === 'unfinished'}" href="">
+            <span>{{homeTeam | teamNameFilter}}</span>
+            <br />
+            <span>{{awayTeam | teamNameFilter}}</span>
+        </button>
+    </div>
 </div>
