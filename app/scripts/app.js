@@ -4,7 +4,8 @@ angular.module(
     'mainApp', [
         'mainApp.controllers',
         'mainApp.services',
-        'templates'
+        'templates',
+        'score'
     ])
     .run([
         '$rootScope',

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fitness UX</title>
+    <title>Was it a Good Game?</title>
     <link rel="stylesheet" type="text/css" href="css/lib.min.css?rev=XXXXXXXX">
     <link rel="stylesheet" type="text/css" href="css/app.min.css?rev=XXXXXXXX">
     <script src="js/lib.min.js?rev=XXXXXXXX"></script>
@@ -10,7 +10,12 @@
 </head>
 <body ng-app="mainApp" ng-controller="MainController as mainCtrl">
 <div class="fitnessContainer">
-    <fd-operating-score></fd-operating-score>
+    <div class="row">
+        <div style="border: 1px solid grey;" class="col-xs-2">Menu</div>
+        <div class="col-xs-10">
+            <gg-main-score></gg-main-score>
+        </div>
+    </div>
 </div>
 </body>
 </html>

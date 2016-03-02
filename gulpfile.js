@@ -25,7 +25,7 @@ var paths = {
     app_src_images: 'app/**/img/*',
     app_src_html_templates: [
         'app/views/**/*.+(htm|html)',
-        'app/modules/fd-operating-score/views/**/*.+(htm|html)'
+        'app/modules/gg-score/views/**/*.+(htm|html)'
     ],
     build_root_dir: 'build',
     build_scripts_dir: 'build/js'

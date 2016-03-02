@@ -1,10 +1,10 @@
 angular.module(
-    'operatingScore',
+    'score',
     [
-        'operatingScore.controllers',
-        'operatingScore.directives',
-        'operatingScore.services',
-        'operatingScore.filters',
+        'score.controllers',
+        'score.directives',
+        'score.services',
+        'score.filters',
         'ui.router'
     ]).config([
     '$stateProvider',

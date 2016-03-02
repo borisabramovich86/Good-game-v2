@@ -1,4 +1,4 @@
-angular.module('operatingScore.filters', [])
+angular.module('score.filters', [])
     .filter(
     'targetingNameFilter',
     [
