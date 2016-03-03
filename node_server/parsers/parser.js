@@ -2,6 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Q = require('q');
 var async = require('async');
+var resultDataFactory = require('../models/ResultData');
 
 
 function Parser() {
@@ -41,18 +42,7 @@ function parseUrl(url,that){
 
                 data.children().each(function(){
 
-                    var resultData = {
-                        AwayTeam : {
-                            name : "",
-                            score : ""
-                        },
-                        HomeTeam : {
-                            name : "",
-                            score : ""
-                        },
-                        Overtime: "",
-                        WasItAGoodGame : false
-                    };
+                    var resultData = resultDataFactory();
 
                     // Get away team details
                     resultData.AwayTeam.name = $(that.AwayTeamLocator + " " +  that.TeamNameLocator, this).text();
@@ -130,10 +120,9 @@ Parser.prototype.parse = function() {
             else{
                 console.log('Finished getting all the games.');
                 var result = {
-                    "yesterday" : results[1],
-                    "today" : results[0]
+                    "yesterday" : results[1]
                 };
-                //areResultsSame(results[0],results[1],result);
+                areResultsSame(results[0],results[1],result);
                 deferred.resolve(result);
             }
         });
@@ -158,8 +147,10 @@ function IsYesterdayAndTodaySame(todayResults, yesterdayResults){
     var areSame = true;
     for (var i = 0; i < todayResults.length; i++) {
 
-        if(!todayResults.get(i).equals(yesterdayResults.get(i)))
-            areSame = false;
+        var tRes = todayResults[i];
+        var yRes = yesterdayResults[i];
+        var eq = tRes.equals(yRes);
+        if(!eq) areSame = false;
     }
 
     return areSame;
