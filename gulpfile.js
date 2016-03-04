@@ -68,52 +68,19 @@ gulp.task('less', function () {
 
 gulp.task('css_build', ['less'], function () {
 
-    gulp.src('app/modules/cm-fonts-resources/fonts/lineto-brown-bold/css/fonts/*.*')
+    gulp.src('app/modules/font-resources/sinkin-sans/fonts/*.*')
         .pipe(gulp.dest('build/css/fonts'));
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/lineto-brown-bold/css/fonts_subsetted/*.*')
-        .pipe(gulp.dest('build/css/fonts_subsetted'));
-
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/lineto-brown-regular/css/fonts/*.*')
-        .pipe(gulp.dest('build/css/fonts'));
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/lineto-brown-regular/css/fonts_subsetted/*.*')
-        .pipe(gulp.dest('build/css/fonts_subsetted'));
-
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/aktiv-grotesk-bd/fonts/*.+(eot|woff)')
-        .pipe(gulp.dest('build/css/fonts'));
-
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/aktiv-grotesk-lt/fonts/*.+(eot|woff)')
-        .pipe(gulp.dest('build/css/fonts'));
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/aktiv-grotesk-rg/fonts/*.+(eot|woff)')
-        .pipe(gulp.dest('build/css/fonts'));
-
-    gulp.src('app/modules/cm-fonts-resources/fonts/font-lpm-icons/fonts/*.*')
-        .pipe(gulp.dest('build/css/fonts'));
-
 
     gulp.src('app/modules/cm-images-sprite/images/*.*')
         .pipe(gulp.dest('build/images'));
 
 
     return gulp.src([
-            'app/modules/cm-fonts-resources/fonts/font-lpm-icons/font-lpm-icons.css',
-            'app/modules/cm-fonts-resources/fonts/lineto-brown-bold/css/lineto-brown-bold.css',
-            'app/modules/cm-fonts-resources/fonts/lineto-brown-regular/css/lineto-brown-regular.css',
-            'app/modules/cm-fonts-resources/fonts/aktiv-grotesk-bd/aktiv-grotesk-bd.css',
-            'app/modules/cm-fonts-resources/fonts/aktiv-grotesk-lt/aktiv-grotesk-lt.css',
-            'app/modules/cm-fonts-resources/fonts/aktiv-grotesk-rg/aktiv-grotesk-rg.css',
-            'app/modules/cm-images-sprite/css/cm-images-sprite.css',
-            'app/modules/cm-images-sprite/css/cm-images-business-terms.css',
+            'app/modules/font-resources/sinkin-sans/sinkin-sans.css',
             'build/tmp/**/*.css'
         ])
         .pipe(sourcemaps.init())
         .pipe(concat('app.min.css'))
-        //.pipe(minifyCss())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('build/css'));
 

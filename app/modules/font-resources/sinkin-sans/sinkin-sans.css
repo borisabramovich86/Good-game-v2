@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Sinkin-Sans-Bold";
+    src: url("fonts/SinkinSans-700Bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sinkin-Sans-Light";
+    src: url("fonts/SinkinSans-200XLight.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sinkin-Sans-SemiBold";
+    src: url("fonts/SinkinSans-600SemiBold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
