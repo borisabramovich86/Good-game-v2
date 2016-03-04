@@ -1,9 +1,16 @@
-<div class="row gg-score-row">
-    <div class="col-xs-12 text-center">
-        <button style="outline: 0;" class="btn btn-default orange-circle-button" ng-class="{good: (goodGame && result !== 'unfinished'), bad:!goodGame, pending:result === 'unfinished'}" href="">
-            <span>{{homeTeam | teamNameFilter}}</span>
-            <br />
-            <span>{{awayTeam | teamNameFilter}}</span>
-        </button>
-    </div>
+<div>
+    <h3 class="score-header">{{date}}</h3>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="score in games" ng-class="{good: (score.WasItAGoodGame && score.Score !== 'unfinished'), bad:!score.WasItAGoodGame, pending:score.Score === 'unfinished'}">
+            <div class="row">
+                <div class="col-xs-1">
+                    <div class="square"></div>
+                </div>
+                <div class="col-xs-11">
+                    {{score.HomeTeam.name}} - {{score.AwayTeam.name}}
+                </div>
+
+            </div>
+        </li>
+    </ul>
 </div>

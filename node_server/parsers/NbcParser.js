@@ -26,6 +26,14 @@ function NbcParser(parser) {
 
     };
 
+    var setTomorrowGamesUrl = function(){
+
+        var dateWithOffset = getDateWithoutOffset(1);
+        var formattedDate = getFormattedDate(dateWithOffset);
+        parser.TomorrowGamesUrl = parser.SiteUrl + "?day=" + formattedDate + "&meta=true";
+
+    };
+
     this.checkIsGameOver = function(scoreText){
 
         var result = parseInt(scoreText);
@@ -55,6 +63,7 @@ function NbcParser(parser) {
     parser.Overtime = ".shsTeamCol.shsNamD";
     parser.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
     setYesterdaysDateUrl();
+    setTomorrowGamesUrl();
     parser.checkIsGameOver = this.checkIsGameOver;
     parser.calculateOvertime = this.calculateOvertime;
     this.parser = parser;

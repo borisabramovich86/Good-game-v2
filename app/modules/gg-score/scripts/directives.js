@@ -9,18 +9,14 @@ angular.module('score.directives', [])
             template: $templateCache.get('gg-score.htm'),
             replace: true,
             scope: {
-                score : '='
+                games : '=',
+                date : '@'
             },
             controller: [
                 '$rootScope',
                 '$scope',
                 function ($rootScope, scope) {
                     console.log('Loaded score!');
-
-                    scope.homeTeam = scope.score.HomeTeam.name;
-                    scope.awayTeam = scope.score.AwayTeam.name;
-                    scope.goodGame = scope.score.WasItAGoodGame;
-                    scope.result = scope.score.Score;
                 }]
         }
     }])

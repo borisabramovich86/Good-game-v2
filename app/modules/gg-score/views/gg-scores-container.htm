@@ -1,37 +1,10 @@
 <div id="gg-scores-container" ng-controller="scoreController as scoreCtrl" class="container">
     <div class="row">
         <div class="col-xs-6">
-            <h3 class="score-header">Today</h3>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="score in todayScores" ng-class="{good: (score.WasItAGoodGame && score.Score !== 'unfinished'), bad:!score.WasItAGoodGame, pending:score.Score === 'unfinished'}">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <div class="square"></div>
-                        </div>
-                        <div class="col-xs-11">
-                            {{score.HomeTeam.name}} - {{score.AwayTeam.name}}
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
+           <gg-score games="todayScores" date="Today"></gg-score>
         </div>
         <div class="col-xs-6">
-            <h3 class="score-header">Yesterday</h3>
-            <ul class="list-group">
-                <li class="list-group-item" ng-class="{good: (score.WasItAGoodGame && score.Score !== 'unfinished'), bad:!score.WasItAGoodGame, pending:score.Score === 'unfinished'}"
-                    ng-repeat="score in yesterdayScores">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <div class="square"></div>
-                        </div>
-                        <div class="col-xs-11">
-                            {{score.HomeTeam.name}} - {{score.AwayTeam.name}}
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
+            <gg-score games="yesterdayScores" date="Yesterday"></gg-score>
         </div>
     </div>
 </div>

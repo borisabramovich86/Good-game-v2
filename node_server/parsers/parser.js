@@ -13,6 +13,7 @@ function Parser() {
     this.TeamScoreLocator = "";
     this.SiteUrl = "";
     this.YesterdaysGamesUrl = "";
+    this.TomorrowGamesUrl = "";
     this.Overtime = "";
     this.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
     this.checkIsGameOver;
@@ -63,7 +64,7 @@ function parseUrl(url,that){
                 });
             });
 
-            console.log('Finished parsing' + url);
+            console.log('Finished parsing ' + url);
             deferred.resolve(collection);
         }
         else{
@@ -111,7 +112,14 @@ Parser.prototype.parse = function() {
                 parseUrl(that.YesterdaysGamesUrl,that).then(function(results){
                     callback(null, results);
                 });
-            }
+            },
+          function(callback){
+              console.log('Getting tomorrow\'s games');
+              // async code to get some data
+              parseUrl(that.TomorrowGamesUrl,that).then(function(results){
+                  callback(null, results);
+              });
+          }
         ],
         function(err, results){
             if(err){
@@ -122,7 +130,9 @@ Parser.prototype.parse = function() {
                 var result = {
                     "yesterday" : results[1]
                 };
-                areResultsSame(results[0],results[1],result);
+                if(areResultsSame(results[0],results[1],result)){
+                    result["today"] =  results[2];
+                }
                 deferred.resolve(result);
             }
         });
