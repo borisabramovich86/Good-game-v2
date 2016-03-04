@@ -1,10 +1,10 @@
 function NbcParser(parser) {
 
-    var getTodayDateWithoutOffset = function(){
+    var getDateWithoutOffset = function(dayOffset){
         var dateObj = new Date();
         var _userOffset = dateObj.getTimezoneOffset()*60000;
         var dateWithOffset = new Date(dateObj.getTime() +_userOffset );
-        dateWithOffset.setDate(dateWithOffset.getDate() - 1);
+        dateWithOffset.setDate(dateWithOffset.getDate() + dayOffset);
         return dateWithOffset;
     };
 
@@ -20,7 +20,7 @@ function NbcParser(parser) {
 
     var setYesterdaysDateUrl = function(){
 
-        var dateWithOffset = getTodayDateWithoutOffset();
+        var dateWithOffset = getDateWithoutOffset(-1);
         var formattedDate = getFormattedDate(dateWithOffset);
         parser.YesterdaysGamesUrl = parser.SiteUrl + "?day=" + formattedDate + "&meta=true";
 
