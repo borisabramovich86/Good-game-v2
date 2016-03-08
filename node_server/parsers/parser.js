@@ -36,7 +36,6 @@ function parseUrl(url,that){
         if(!error){
             var $ = cheerio.load(html);
 
-
             $(that.ResultElement).filter(function() {
 
                 var data = $(this);
@@ -143,10 +142,13 @@ Parser.prototype.parse = function() {
 function areResultsSame(todaysGames,yesterdaysGames,result) {
     var tmp1 = todaysGames;
     var tmp2 = yesterdaysGames;
+    var theSame = IsYesterdayAndTodaySame(tmp1,tmp2);
 
-    if(!IsYesterdayAndTodaySame(tmp1,tmp2)){
+    if(!theSame){
         result["today"] =  tmp1;
     }
+
+    return theSame;
 }
 
 function IsYesterdayAndTodaySame(todayResults, yesterdayResults){

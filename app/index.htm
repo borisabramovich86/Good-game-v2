@@ -10,15 +10,54 @@
 </head>
 <body ng-app="mainApp" ng-controller="MainController as mainCtrl">
 <div class="fitnessContainer">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <!--<h4 class="modal-title" id="myModalLabel">Was it a Good Game?</h4>-->
+                <!--</div>-->
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div class="good square"></div>
+                        </div>
+                        <div class="col-xs-10"><span>- Good</span></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div class="bad square"></div>
+                        </div>
+                        <div class="col-xs-10"><span>- Bad</span></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div class="pending square"></div>
+                        </div>
+                        <div class="col-xs-10"><span>- Unfinished</span></div>
+
+                    </div>
+                </div>
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-2">
             <div style="height: 200px; padding: 50px; font-size: 7em">
                 <i class="fa fa-thumbs-up fa-6x"></i>
             </div>
-            <div>
+            <div id="scores-nav">
                 <ul class="list-group">
-                    <li class="list-group-item">NBA</li>
-                    <li class="list-group-item">About</li>
+                    <a href="#/nba" class="list-group-item ">NBA</a>
+                    <a href="#" class="list-group-item" type="button"  data-toggle="modal" data-target="#myModal">
+                        About
+                    </a>
                 </ul>
             </div>
         </div>

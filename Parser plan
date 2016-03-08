@@ -1,0 +1,10 @@
+0 . Get date list per season ( last 5 seasons)
+1.Go to day's games http://www.basketball-reference.com/boxscores/index.cgi?month=10&day=31&year=2012
+2. Collect play by play links
+3. Go to play by play links http://www.basketball-reference.com/boxscores/201210310CHI.html
+4. Decide what do take:
+
+Ties	4
+Lead changes	5
+Array Box Score per change
+Array Box Score per Quarter

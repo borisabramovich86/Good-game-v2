@@ -1,38 +1,53 @@
 #gg-scores-container{
-  //padding-left: 200px;
-}
 
-.score-header{
-  color: white;
-  font-size: 50px;
-  //font-weight: 300;
-  font-family: Sinkin-Sans-SemiBold;
-}
-
-.list-group-item{
-  color: whitesmoke;
-  font-size: 24px;
-  height: 60px;
-  border-radius: 0px !important;
-  width: 600px;
-  background-color: transparent;
-  border-width: 0px;
-  font-family: Sinkin-Sans-Light;
-
-  &.good .square{
-    background-color: #3ac569;
+  .score-header{
+    color: white;
+    font-size: 50px;
+    font-family: Sinkin-Sans-SemiBold;
   }
 
-  &.bad .square{
-    background-color: #E53A40;
+  .list-group-item{
+    color: whitesmoke;
+    font-size: 24px;
+    height: 60px;
+    border-radius: 0px !important;
+    width: 600px;
+    background-color: transparent;
+    border-width: 0px;
+    font-family: Sinkin-Sans-Light;
+
+    &.good .square{
+      background-color: #3ac569;
+    }
+
+    &.bad .square{
+      background-color: #E53A40;
+    }
+
+    &.pending .square{
+      background-color: #F6B352;
+    }
   }
 
-  &.pending .square{
-    background-color: #F6B352;
+  .square {
+    width: 30px;
+    height: 30px;
   }
 }
 
-.square {
-  width: 30px;
-  height: 30px;
+#scores-nav{
+
+  margin-left: 40px;
+
+  .list-group-item{
+    color: whitesmoke;
+    font-size: 24px;
+    height: 60px;
+    border-radius: 0px !important;
+    background-color: transparent;
+    border-width: 0px;
+    font-family: Sinkin-Sans-Regular;
+  }
 }
+
+

@@ -19,3 +19,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Sinkin-Sans-Medium";
+    src: url("fonts/SinkinSans-500Medium.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: "Sinkin-Sans-Regular";
+    src: url("fonts/SinkinSans-400Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+

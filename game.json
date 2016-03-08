@@ -1,0 +1,20 @@
+{
+    "box" : [],
+    "date" : "2013-04-17T04:00:00.000Z",
+    "teams" : [
+        {
+            "name" : "Charlotte Bobcats",
+            "abbreviation" : "CHA",
+            "score" : 105,
+            "home" : true,
+            "won" : 1
+        },
+        {
+            "name" : "Cleveland Cavaliers",
+            "abbreviation" : "CLE",
+            "score" : 98,
+            "home" : false,
+            "won" : 0
+        }
+    ]
+}
