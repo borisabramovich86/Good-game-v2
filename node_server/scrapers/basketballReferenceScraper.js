@@ -5,6 +5,7 @@ var async = require('async');
 var tidy = require('htmltidy').tidy;
 var scraperData = require('../models/ScoreParserData');
 var Game = require('../models/game');
+var csvParser = require('../FileHandler/CsvParser');
 
 function Scraper(){
   this.Promise = Q;
@@ -20,7 +21,6 @@ function parseUrl(url, date){
       'User-Agent': this.UserAgent
     }
   };
-  var collection = [];
 
   request(options, function(error, response, html){
     if(!error){
@@ -93,8 +93,7 @@ function parseUrl(url, date){
           }
           console.log('Game saved successfully! ' + result._id);
         });
-        console.log('Finished parsing ' + url);
-        deferred.resolve(collection);
+        deferred.resolve('Finished parsing ' + url);
       });
 
     }
@@ -111,44 +110,70 @@ function parseUrl(url, date){
 Scraper.prototype.scrape = function(){
 
   var deferred = this.Promise.defer();
-  var options = {
-    url: 'http://www.basketball-reference.com/boxscores/index.cgi?month=10&day=28&year=2014',
-    headers: {
-      'User-Agent': this.UserAgent
-    }
-  };
+  var fileParser = new csvParser();
 
-  var month = options.url.substr(options.url.indexOf("month=") + 6,2);
-  var day = options.url.substr(options.url.indexOf("day=") + 4,2);
-  var year = options.url.substr(options.url.indexOf("year=") + 5,4);
-  var date = new Date(year + "-" + month + "-" + day);
+  fileParser.parseFile('2011-2012.csv').then(function(dates){
 
-  var linksArr = [];
+    var time = 10000;
+    dates.forEach(function(entry){
 
-  request(options, function(error, response, html){
-    if(!error){
+      setTimeout(function(){
 
-      tidy(html, function(err, html) {
+        console.log('new Day parsing time ' + new Date());
+        var date = new Date(entry);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var options = {
+          url: 'http://www.basketball-reference.com/boxscores/index.cgi?month=' + month +'&day='+day+'&year=' + year
+        };
 
-        var $ = cheerio.load(html);
+        var linksArr = [];
 
-        $('#boxes .align_center > a:nth-child(2)').each(function(){
-          linksArr.push('http://www.basketball-reference.com' + $(this).attr('href'));
+        request(options, function(error, response, html){
+          if(!error){
+
+            tidy(html, function(err, html) {
+
+              var $ = cheerio.load(html);
+
+              $('#boxes .align_center > a:nth-child(2)').each(function(){
+                linksArr.push('http://www.basketball-reference.com' + $(this).attr('href'));
+              });
+
+              var linkTime = 10000;
+              linksArr.forEach(function(link){
+
+                setTimeout(function(){
+                  parseUrl(link,date).then(function(result){
+                    console.log('Link parsing time ' + new Date());
+                    console.log(result);
+                  });
+                }, linkTime);
+                linkTime += Math.floor(Math.random() * 60000) + 10000  ;
+
+              });
+              //async.each(linksArr,function(item, callback){
+              //  parseUrl(item,date).then(function(results){
+              //    callback(null, results);
+              //  });
+              //})
+            });
+
+
+            deferred.resolve("yes");
+          }
+          else {
+            console.log('error!!!');
+            console.log(response);
+            deferred.reject("error");
+          }
         });
 
-        async.each(linksArr,function(item, callback){
-          parseUrl(item,date).then(function(results){
-            callback(null, results);
-          });
-        })
-      });
+      }, time);
+      time += Math.floor(Math.random() * 60000) + 10000  ;
 
-
-      deferred.resolve("yes");
-    }
-    else{
-      deferred.reject("error");
-    }
+    })
   });
 
   return deferred.promise;

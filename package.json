@@ -9,6 +9,7 @@
     "cheerio": "latest",
     "connect-livereload": "^0.5.3",
     "cors": "^2.7.1",
+    "csv-parser": "^1.9.3",
     "express": "~4.5.1",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.8.0",
