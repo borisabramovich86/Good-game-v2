@@ -4,7 +4,7 @@ var Q = require('q');
 var async = require('async');
 var tidy = require('htmltidy').tidy;
 var scraperData = require('../models/ScoreParserData');
-var Game = require('../models/game');
+var Game = require('../models/Game');
 var csvParser = require('../FileHandler/CsvParser');
 
 function Scraper(){
