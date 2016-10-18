@@ -23,7 +23,6 @@ function NbcParser(parser) {
         var dateWithOffset = getDateWithoutOffset(-1);
         var formattedDate = getFormattedDate(dateWithOffset);
         parser.YesterdaysGamesUrl = parser.SiteUrl + "?day=" + formattedDate + "&meta=true";
-
     };
 
     var setTomorrowGamesUrl = function(){
@@ -31,7 +30,6 @@ function NbcParser(parser) {
         var dateWithOffset = getDateWithoutOffset(1);
         var formattedDate = getFormattedDate(dateWithOffset);
         parser.TomorrowGamesUrl = parser.SiteUrl + "?day=" + formattedDate + "&meta=true";
-
     };
 
     this.checkIsGameOver = function(scoreText){
@@ -60,12 +58,14 @@ function NbcParser(parser) {
     parser.TeamNameLocator = ".shsNamD a";
     parser.TeamScoreLocator = "td:nth-child(6)";
     parser.SiteUrl = "http://scores.nbcsports.msnbc.com/nba/scoreboard.asp";
+    parser.PreSeasonUrl = "&seasontype=pre";
     parser.Overtime = ".shsTeamCol.shsNamD";
     parser.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
     setYesterdaysDateUrl();
     setTomorrowGamesUrl();
     parser.checkIsGameOver = this.checkIsGameOver;
     parser.calculateOvertime = this.calculateOvertime;
+    parser.CheckPreseason();
     this.parser = parser;
 }
 

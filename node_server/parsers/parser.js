@@ -3,6 +3,7 @@ var cheerio = require('cheerio');
 var Q = require('q');
 var async = require('async');
 var resultDataFactory = require('../models/ResultData');
+var preseasonDates = require( "../Data/Preseason_dates" )
 
 
 function Parser() {
@@ -18,6 +19,7 @@ function Parser() {
     this.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
     this.checkIsGameOver;
     this.Promise = Q;
+    this.PreSeasonUrl = "";
 }
 
 function parseUrl(url,that){
@@ -137,6 +139,16 @@ Parser.prototype.parse = function() {
         });
 
     return deferred.promise;
+};
+
+Parser.prototype.CheckPreseason = function(){
+    var now = new Date();
+    var seasonStartDateString = preseasonDates.filter(function(date){ return date.year === now.getFullYear()})[0].date;
+    var seasonStartDate = new Date(seasonStartDateString);
+    if(now < seasonStartDate){
+        this.YesterdaysGamesUrl += this.PreSeasonUrl;
+        this.TomorrowGamesUrl += this.PreSeasonUrl;
+    }
 };
 
 function areResultsSame(todaysGames,yesterdaysGames,result) {
